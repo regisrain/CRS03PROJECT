@@ -48,12 +48,10 @@ subject_global<-rbind(subject_test,subject_train)
 tidy_set_subject<-cbind(subject_global,tidy_set)
 
 ## Split table by subject and activity and summarize
-cols2<-ncol(tidy_set_subject)
-var_names<-colnames(tidy_set_subject)[3:cols2]
-
 grouped<-group_by(tidy_set_subject,subject,activity)
 tidy<-summarise_each(grouped,funs(mean))
 
+## Create the final tidied txt file
 write.table(tidy,"tidy.txt",row.names=FALSE)
 
 
